@@ -2,11 +2,11 @@ import qs from 'qs';
 import { AUTHORIZE_URL } from '../constants';
 import { AuthorizationScope } from '../types/SpotifyAuthorization';
 
-export type GetAuthorizationUrlOptions = {
+export interface GetAuthorizationUrlOptions {
   scope?: AuthorizationScope[];
   show_dialog?: boolean;
   state?: string;
-};
+}
 
 export function getAuthorizationUrl(
   clientId: string,

@@ -19,24 +19,24 @@ export type AuthorizationScope =
   | 'user-follow-read'
   | 'user-follow-modify';
 
-export type GetRefreshableUserTokensResponse = {
+export interface GetRefreshableUserTokensResponse {
   access_token: string;
   token_type: 'Bearer';
   scope: string;
   expires_in: number;
   refresh_token: string;
-};
+}
 
-export type GetRefreshedAccessTokenResponse = {
+export interface GetRefreshedAccessTokenResponse {
   access_token: string;
   token_type: 'Bearer';
   expires_in: number;
   scope: string;
-};
+}
 
-export type GetTemporaryAppTokensResponse = {
+export interface GetTemporaryAppTokensResponse {
   access_token: string;
   token_type: 'Bearer';
   expires_in: number;
   scope: string;
-};
+}

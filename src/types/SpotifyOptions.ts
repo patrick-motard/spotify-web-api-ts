@@ -2,72 +2,72 @@
 // | General |
 // +---------+
 
-export type DeviceIdOptions = {
+export interface DeviceIdOptions {
   device_id?: string;
-};
+}
 
-export type MarketOptions = {
+export interface MarketOptions {
   market?: string;
-};
+}
 
 // +--------+
 // | Albums |
 // +--------+
 
-export type GetAlbumTracksOptions = {
+export interface GetAlbumTracksOptions {
   limit?: number;
   offset?: number;
   market?: string;
-};
+}
 
 // +---------+
 // | Artists |
 // +---------+
 
-export type GetArtistAlbumsOptions = {
+export interface GetArtistAlbumsOptions {
   include_groups?: Array<'album' | 'single' | 'appears_on' | 'compilation'>;
   country?: string;
   limit?: number;
   offset?: number;
-};
+}
 
 // +--------+
 // | Browse |
 // +--------+
 
-export type GetCategoriesOptions = {
+export interface GetCategoriesOptions {
   country?: string;
   locale?: string;
   limit?: number;
   offset?: number;
-};
+}
 
-export type GetCategoryOptions = {
+export interface GetCategoryOptions {
   country?: string;
   locale?: string;
-};
+}
 
-export type GetCategoryPlaylistsOptions = {
+export interface GetCategoryPlaylistsOptions {
   country?: string;
   limit?: number;
   offset?: number;
-};
+}
 
-export type GetFeaturedPlaylistsOptions = {
+export interface GetFeaturedPlaylistsOptions {
   locale?: string;
   country?: string;
   timestamp?: string;
   limit?: number;
   offset?: number;
-};
+}
 
-export type GetNewReleasesOptions = {
+export interface GetNewReleasesOptions {
   country?: string;
   limit?: number;
   offset?: number;
-};
+}
 
-export type GetRecommendationsOptions = {
+export interface GetRecommendationsOptions {
   limit?: number;
   market?: string;
   max_acousticness?: number;
@@ -112,151 +112,151 @@ export type GetRecommendationsOptions = {
   target_tempo?: number;
   target_time_signature?: number;
   target_valence?: number;
-};
+}
 
 // +--------+
 // | Follow |
 // +--------+
 
-export type FollowPlaylistOptions = {
+export interface FollowPlaylistOptions {
   public?: boolean;
-};
+}
 
-export type GetFollowedArtistsOptions = {
+export interface GetFollowedArtistsOptions {
   limit?: number;
   after?: string;
-};
+}
 
 // +---------+
 // | Library |
 // +---------+
 
-export type GetSavedAlbumsOptions = {
+export interface GetSavedAlbumsOptions {
   limit?: number;
   offset?: number;
   market?: string;
-};
+}
 
-export type GetSavedShowsOptions = {
+export interface GetSavedShowsOptions {
   limit?: number;
   offset?: number;
-};
+}
 
-export type GetSavedTracksOptions = {
+export interface GetSavedTracksOptions {
   limit?: number;
   offset?: number;
   market?: string;
-};
+}
 
-export type RemoveSavedShowsOptions = {
+export interface RemoveSavedShowsOptions {
   market?: string;
-};
+}
 
 // +-----------------+
 // | Personalization |
 // +-----------------+
 
-export type PersonalizationOptions = {
+export interface PersonalizationOptions {
   limit?: number;
   offset?: number;
   time_range?: 'long_term' | 'medium_term' | 'short_term';
-};
+}
 
 // +--------+
 // | Player |
 // +--------+
 
-export type GetCurrentlyPlayingTrackOptions = {
+export interface GetCurrentlyPlayingTrackOptions {
   market?: string;
   additional_types?: Array<'episode'>;
-};
+}
 
-export type GetPlaybackInfoOptions = {
+export interface GetPlaybackInfoOptions {
   market?: string;
   additional_types?: Array<'episode'>;
-};
+}
 
-export type GetRecentlyPlayedTracksOptions = {
+export interface GetRecentlyPlayedTracksOptions {
   limit?: number;
   after?: number;
   before?: number;
-};
+}
 
-export type PlayOptions = {
+export interface PlayOptions {
   device_id?: string;
   context_uri?: string;
   uris?: string[];
   offset?: { position: number } | { uri: string };
-};
+}
 
-export type TransferPlaybackOptions = {
+export interface TransferPlaybackOptions {
   play?: boolean;
-};
+}
 
 // +-----------+
 // | Playlists |
 // +-----------+
 
-export type AddItemsToPlaylistOptions = {
+export interface AddItemsToPlaylistOptions {
   position?: number;
-};
+}
 
-export type CreatePlaylistOptions = {
+export interface CreatePlaylistOptions {
   public?: boolean;
   collaborative?: boolean;
   description?: string;
-};
+}
 
-export type GetMyPlaylistsOptions = {
+export interface GetMyPlaylistsOptions {
   limit?: number;
   offset?: number;
-};
+}
 
-export type GetPlaylistOptions = {
+export interface GetPlaylistOptions {
   fields?: string;
   market?: string;
   additional_types?: Array<'episode'>;
-};
+}
 
-export type GetPlaylistItemsOptions = {
+export interface GetPlaylistItemsOptions {
   fields?: string;
   limit?: number;
   offset?: number;
   market?: string;
   additional_types?: Array<'episode'>;
-};
+}
 
-export type GetUserPlaylistsOptions = {
+export interface GetUserPlaylistsOptions {
   limit?: number;
   offset?: number;
-};
+}
 
-export type RemovePlaylistItemsByPositionOptions = {
+export interface RemovePlaylistItemsByPositionOptions {
   snapshot_id?: string;
-};
+}
 
-export type ReorderPlaylistItemsOptions = {
+export interface ReorderPlaylistItemsOptions {
   range_length?: number;
   snapshot_id?: string;
-};
+}
 
 // +--------+
 // | Search |
 // +--------+
 
-export type SearchOptions = {
+export interface SearchOptions {
   market?: string;
   limit?: number;
   offset?: number;
   include_external?: 'audio';
-};
+}
 
 // +-------+
 // | Shows |
 // +-------+
 
-export type GetShowEpisodesOptions = {
+export interface GetShowEpisodesOptions {
   limit?: number;
   offset?: number;
   market?: string;
-};
+}

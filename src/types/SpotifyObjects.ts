@@ -10,7 +10,7 @@ export type Action =
   | 'toggling_repeat_track'
   | 'transferring_playback';
 
-export type Album = {
+export interface Album {
   album_type: 'album' | 'single' | 'compilation';
   artists: SimplifiedArtist[];
   available_markets: string[];
@@ -31,9 +31,9 @@ export type Album = {
   tracks: Paging<SimplifiedTrack>;
   type: 'album';
   uri: string;
-};
+}
 
-export type Artist = {
+export interface Artist {
   external_urls: ExternalURL;
   followers: Followers;
   genres: string[];
@@ -44,9 +44,9 @@ export type Artist = {
   popularity: number;
   type: 'artist';
   uri: string;
-};
+}
 
-export type AudioAnalysis = {
+export interface AudioAnalysis {
   bars: TimeInterval[];
   beats: TimeInterval[];
   meta?: unknown;
@@ -54,9 +54,9 @@ export type AudioAnalysis = {
   segments: Segment[];
   tatums: TimeInterval[];
   track?: unknown;
-};
+}
 
-export type AudioFeatures = {
+export interface AudioFeatures {
   duration_ms: number;
   key: number;
   mode: number;
@@ -75,28 +75,28 @@ export type AudioFeatures = {
   track_href: string;
   analysis_url: string;
   type: 'audio_features';
-};
+}
 
-export type Category = {
+export interface Category {
   href: string;
   icons: SpotifyImage[];
   id: string;
   name: string;
-};
+}
 
-export type Context = {
+export interface Context {
   uri: string;
   href: string | null;
   external_urls: ExternalURL | null;
   type: 'album' | 'artist' | 'playlist';
-};
+}
 
-export type Copyright = {
+export interface Copyright {
   text: string;
   type: 'C' | 'P';
-};
+}
 
-export type CurrentlyPlaying = {
+export interface CurrentlyPlaying {
   context: Context | null;
   timestamp: number;
   progress_ms: number | null;
@@ -104,9 +104,9 @@ export type CurrentlyPlaying = {
   item: Episode | Track | null;
   currently_playing_type: 'track' | 'episode' | 'ad' | 'unknown';
   actions: Disallows;
-};
+}
 
-export type CurrentlyPlayingContext = {
+export interface CurrentlyPlayingContext {
   device: Device;
   repeat_state: 'off' | 'track' | 'context';
   shuffle_state: boolean;
@@ -117,23 +117,23 @@ export type CurrentlyPlayingContext = {
   item: Track | null;
   currently_playing_type: 'track' | 'episode' | 'ad' | 'unknown';
   actions: Disallows;
-};
+}
 
-export type Cursor = {
+export interface Cursor {
   after: string;
   before?: string;
-};
+}
 
-export type CursorBasedPaging<T> = {
+export interface CursorBasedPaging<T> {
   href: string;
   items: T[];
   limit: number;
   next: string | null;
   cursors: Cursor;
   total?: number;
-};
+}
 
-export type Device = {
+export interface Device {
   id: string | null;
   is_active: boolean;
   is_private_session: boolean;
@@ -141,7 +141,7 @@ export type Device = {
   name: string;
   type: DeviceType;
   volume_percent: number | null;
-};
+}
 
 export type DeviceType =
   | 'Computer'
@@ -158,11 +158,11 @@ export type DeviceType =
   | 'Automobile'
   | 'Unknown';
 
-export type Disallows = {
+export interface Disallows {
   disallows: Partial<Record<Action, boolean>>;
-};
+}
 
-export type Episode = {
+export interface Episode {
   audio_preview_url: string | null;
   description: string;
   duration_ms: number;
@@ -182,33 +182,29 @@ export type Episode = {
   show: SimplifiedShow;
   type: 'episode';
   uri: string;
-};
+}
 
-export type ExplicitContent = {
+export interface ExplicitContent {
   filter_enabled: boolean;
   filter_locked: boolean;
-};
+}
 
-export type ExternalID = {
-  [key: string]: string;
-};
+export type ExternalID = Record<string, string>;
 
-export type ExternalURL = {
-  [key: string]: string;
-};
+export type ExternalURL = Record<string, string>;
 
-export type Followers = {
+export interface Followers {
   href: string | null;
   total: number;
-};
+}
 
-export type GetRecommendationsSeeds = {
+export interface GetRecommendationsSeeds {
   seed_artists?: string[];
   seed_genres?: string[];
   seed_tracks?: string[];
-};
+}
 
-export type Paging<T> = {
+export interface Paging<T> {
   href: string;
   items: T[];
   limit: number;
@@ -216,15 +212,15 @@ export type Paging<T> = {
   offset: number;
   previous: string | null;
   total: number;
-};
+}
 
-export type PlayHistory = {
+export interface PlayHistory {
   track: Track;
   played_at: string;
   context: Context | null;
-};
+}
 
-export type Playlist = {
+export interface Playlist {
   collaborative: boolean;
   description: string | null;
   external_urls: ExternalURL;
@@ -240,25 +236,25 @@ export type Playlist = {
   tracks: Paging<PlaylistItem>;
   type: 'playlist';
   uri: string;
-};
+}
 
-export type PlaylistDetails = {
+export interface PlaylistDetails {
   name?: string;
   public?: boolean;
   collaborative?: boolean;
   description?: string;
-};
+}
 
-export type PlaylistItem = {
+export interface PlaylistItem {
   added_at: string | null;
   added_by: PublicUser | null;
   is_local: boolean;
   primary_color?: string | null;
   track: Track | Episode;
   video_thumbnail?: VideoThumbnail;
-};
+}
 
-export type PrivateUser = {
+export interface PrivateUser {
   birthdate?: string;
   country?: string;
   display_name: string | null;
@@ -272,9 +268,9 @@ export type PrivateUser = {
   product?: string;
   type: 'user';
   uri: string;
-};
+}
 
-export type PublicUser = {
+export interface PublicUser {
   display_name?: string | null;
   external_urls: ExternalURL;
   followers?: Followers;
@@ -283,49 +279,49 @@ export type PublicUser = {
   images?: SpotifyImage[];
   type: 'user';
   uri: string;
-};
+}
 
-export type RecommendationSeed = {
+export interface RecommendationSeed {
   afterFilteringSize: number;
   afterRelinkingSize: number;
   href: string | null;
   id: string;
   initialPoolSize: number;
   type: 'artist' | 'ARTIST' | 'track' | 'TRACK' | 'genre' | 'GENRE';
-};
+}
 
-export type RegularError = {
+export interface RegularError {
   error: {
     status: number;
     message: string;
   };
-};
+}
 
 export type RepeatState = 'track' | 'context' | 'off';
 
-export type ResumePoint = {
+export interface ResumePoint {
   fully_played: boolean;
   resume_position_ms: number;
-};
+}
 
-export type Restrictions = {
+export interface Restrictions {
   reason: string;
-};
+}
 
-export type SavedAlbum = {
+export interface SavedAlbum {
   added_at: string;
   album: Album;
-};
+}
 
-export type SavedShow = {
+export interface SavedShow {
   added_at: string;
   show: SimplifiedShow;
-};
+}
 
-export type SavedTrack = {
+export interface SavedTrack {
   added_at: string;
   track: Track;
-};
+}
 
 export type SearchType =
   | 'album'
@@ -335,7 +331,7 @@ export type SearchType =
   | 'show'
   | 'episode';
 
-export type Section = {
+export interface Section {
   start: number;
   duration: number;
   confidence: number;
@@ -348,9 +344,9 @@ export type Section = {
   mode_confidence: number;
   time_signature: number;
   time_signature_confidence: number;
-};
+}
 
-export type Segment = {
+export interface Segment {
   start: number;
   duration: number;
   confidence: number;
@@ -360,9 +356,9 @@ export type Segment = {
   loudness_end: number;
   pitches: number[];
   timbre: number[];
-};
+}
 
-export type Show = {
+export interface Show {
   available_markets: string[];
   copyrights: Copyright[];
   description: string;
@@ -379,9 +375,9 @@ export type Show = {
   publisher: string;
   type: 'show';
   uri: string;
-};
+}
 
-export type SimplifiedAlbum = {
+export interface SimplifiedAlbum {
   album_group?: 'album' | 'single' | 'compilation' | 'appears_on';
   album_type:
     | 'album'
@@ -403,18 +399,18 @@ export type SimplifiedAlbum = {
   total_tracks: number;
   type: 'album';
   uri: string;
-};
+}
 
-export type SimplifiedArtist = {
+export interface SimplifiedArtist {
   external_urls: ExternalURL;
   href: string;
   id: string;
   name: string;
   type: 'artist';
   uri: string;
-};
+}
 
-export type SimplifiedEpisode = {
+export interface SimplifiedEpisode {
   audio_preview_url: string | null;
   description: string;
   duration_ms: number;
@@ -433,9 +429,9 @@ export type SimplifiedEpisode = {
   resume_point?: ResumePoint;
   type: 'episode';
   uri: string;
-};
+}
 
-export type SimplifiedPlaylist = {
+export interface SimplifiedPlaylist {
   collaborative: boolean;
   description: string | null;
   external_urls: ExternalURL;
@@ -450,9 +446,9 @@ export type SimplifiedPlaylist = {
   tracks: Tracks;
   type: 'playlist';
   uri: string;
-};
+}
 
-export type SimplifiedShow = {
+export interface SimplifiedShow {
   available_markets: string[];
   copyrights: Copyright[];
   description: string;
@@ -468,9 +464,9 @@ export type SimplifiedShow = {
   publisher: string;
   type: 'show';
   uri: string;
-};
+}
 
-export type SimplifiedTrack = {
+export interface SimplifiedTrack {
   artists: SimplifiedArtist[];
   available_markets: string[];
   disc_number: number;
@@ -488,21 +484,21 @@ export type SimplifiedTrack = {
   type: 'track';
   uri: string;
   is_local: boolean;
-};
+}
 
-export type SpotifyImage = {
+export interface SpotifyImage {
   height: number | null;
   url: string;
   width: number | null;
-};
+}
 
-export type TimeInterval = {
+export interface TimeInterval {
   start: number;
   duration: number;
   confidence: number;
-};
+}
 
-export type Track = {
+export interface Track {
   album: SimplifiedAlbum;
   artists: SimplifiedArtist[];
   available_markets?: string[];
@@ -525,21 +521,21 @@ export type Track = {
   type: 'track';
   uri: string;
   is_local: boolean;
-};
+}
 
-export type TrackLink = {
+export interface TrackLink {
   external_urls: ExternalURL;
   href: string;
   id: string;
   type: 'track';
   uri: string;
-};
+}
 
-export type Tracks = {
+export interface Tracks {
   href: string;
   total: number;
-};
+}
 
-export type VideoThumbnail = {
+export interface VideoThumbnail {
   url: string | null;
-};
+}

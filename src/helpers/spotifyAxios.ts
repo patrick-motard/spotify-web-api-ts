@@ -2,7 +2,9 @@ import axios, { AxiosError, AxiosRequestConfig, Method } from 'axios';
 import qs from 'qs';
 import { BASE_API_URL } from '../constants';
 
-export type SpotifyAxiosConfig = AxiosRequestConfig & { contentType?: string };
+export interface SpotifyAxiosConfig extends AxiosRequestConfig {
+  contentType?: string;
+}
 
 export async function spotifyAxios<T>(
   url: string,
