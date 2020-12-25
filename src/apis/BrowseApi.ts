@@ -1,21 +1,5 @@
 import { Http } from '../helpers/Http';
-import { Category, GetRecommendationsSeeds } from '../types/SpotifyObjects';
-import {
-  GetCategoriesOptions,
-  GetCategoryOptions,
-  GetCategoryPlaylistsOptions,
-  GetFeaturedPlaylistsOptions,
-  GetNewReleasesOptions,
-  GetRecommendationsOptions,
-} from '../types/SpotifyOptions';
-import {
-  GetAvailableGenreSeedsResponse,
-  GetCategoriesResponse,
-  GetCategoryPlaylistsResponse,
-  GetFeaturedPlaylistsResponse,
-  GetNewReleasesResponse,
-  GetRecommendationsResponse,
-} from '../types/SpotifyResponses';
+import * as types from '../types';
 
 export class BrowseApi {
   private http: Http;
@@ -39,7 +23,7 @@ export class BrowseApi {
    * ```
    */
   async getAvailableGenreSeeds() {
-    const response = await this.http.get<GetAvailableGenreSeedsResponse>(
+    const response = await this.http.get<types.GetAvailableGenreSeedsResponse>(
       '/recommendations/available-genre-seeds',
     );
     return response.genres;
@@ -62,8 +46,8 @@ export class BrowseApi {
    *
    * @param options Optional request information.
    */
-  async getCategories(options?: GetCategoriesOptions) {
-    const response = await this.http.get<GetCategoriesResponse>(
+  async getCategories(options?: types.GetCategoriesOptions) {
+    const response = await this.http.get<types.GetCategoriesResponse>(
       '/browse/categories',
       options && { params: options },
     );
@@ -88,8 +72,8 @@ export class BrowseApi {
    * @param categoryId The Spotify category ID for the category.
    * @param options Optional request information.
    */
-  getCategory(categoryId: string, options?: GetCategoryOptions) {
-    return this.http.get<Category>(
+  getCategory(categoryId: string, options?: types.GetCategoryOptions) {
+    return this.http.get<types.Category>(
       `/browse/categories/${categoryId}`,
       options && { params: options },
     );
@@ -114,9 +98,9 @@ export class BrowseApi {
    */
   async getCategoryPlaylists(
     categoryId: string,
-    options?: GetCategoryPlaylistsOptions,
+    options?: types.GetCategoryPlaylistsOptions,
   ) {
-    const response = await this.http.get<GetCategoryPlaylistsResponse>(
+    const response = await this.http.get<types.GetCategoryPlaylistsResponse>(
       `/browse/categories/${categoryId}/playlists`,
       options && { params: options },
     );
@@ -140,8 +124,8 @@ export class BrowseApi {
    *
    * @param options Optional request information.
    */
-  getFeaturedPlaylists(options?: GetFeaturedPlaylistsOptions) {
-    return this.http.get<GetFeaturedPlaylistsResponse>(
+  getFeaturedPlaylists(options?: types.GetFeaturedPlaylistsOptions) {
+    return this.http.get<types.GetFeaturedPlaylistsResponse>(
       '/browse/featured-playlists',
       options && { params: options },
     );
@@ -164,8 +148,8 @@ export class BrowseApi {
    *
    * @param options Optional request information.
    */
-  async getNewReleases(options?: GetNewReleasesOptions) {
-    const response = await this.http.get<GetNewReleasesResponse>(
+  async getNewReleases(options?: types.GetNewReleasesOptions) {
+    const response = await this.http.get<types.GetNewReleasesResponse>(
       '/browse/new-releases',
       options && { params: options },
     );
@@ -201,10 +185,10 @@ export class BrowseApi {
    * @param options Optional request information.
    */
   getRecommendations(
-    seeds: GetRecommendationsSeeds,
-    options?: GetRecommendationsOptions,
+    seeds: types.GetRecommendationsSeeds,
+    options?: types.GetRecommendationsOptions,
   ) {
-    return this.http.get<GetRecommendationsResponse>('/recommendations', {
+    return this.http.get<types.GetRecommendationsResponse>('/recommendations', {
       params: {
         ...seeds,
         ...options,

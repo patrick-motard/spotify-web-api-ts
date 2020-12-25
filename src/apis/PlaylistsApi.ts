@@ -1,25 +1,5 @@
 import { Http } from '../helpers/Http';
-import {
-  Playlist,
-  PlaylistDetails,
-  SpotifyImage,
-} from '../types/SpotifyObjects';
-import {
-  AddItemsToPlaylistOptions,
-  CreatePlaylistOptions,
-  GetMyPlaylistsOptions,
-  GetPlaylistItemsOptions,
-  GetPlaylistOptions,
-  GetUserPlaylistsOptions,
-  RemovePlaylistItemsByPositionOptions,
-  ReorderPlaylistItemsOptions,
-} from '../types/SpotifyOptions';
-import {
-  GetMyPlaylistsResponse,
-  GetPlaylistItemsResponse,
-  GetUserPlaylistsResponse,
-  SnapshotIdResponse,
-} from '../types/SpotifyResponses';
+import * as types from '../types';
 
 export class PlaylistsApi {
   private http: Http;
@@ -40,7 +20,7 @@ export class PlaylistsApi {
   addItemToPlaylist(
     playlistId: string,
     uri: string,
-    options?: AddItemsToPlaylistOptions,
+    options?: types.AddItemsToPlaylistOptions,
   ) {
     return this.addItemsToPlaylist(playlistId, [uri], options);
   }
@@ -57,9 +37,9 @@ export class PlaylistsApi {
   async addItemsToPlaylist(
     playlistId: string,
     uris: string[],
-    options?: AddItemsToPlaylistOptions,
+    options?: types.AddItemsToPlaylistOptions,
   ) {
-    const response = await this.http.post<SnapshotIdResponse>(
+    const response = await this.http.post<types.SnapshotIdResponse>(
       `/playlists/${playlistId}/tracks`,
       {
         data: {
@@ -80,7 +60,7 @@ export class PlaylistsApi {
    * @param playlistId The Spotify ID for the playlist.
    * @param details The playlist details to update.
    */
-  changePlaylistDetails(playlistId: string, details: PlaylistDetails) {
+  changePlaylistDetails(playlistId: string, details: types.PlaylistDetails) {
     return this.http.put<void>(
       `/playlists/${playlistId}`,
       details && { data: details },
@@ -100,9 +80,9 @@ export class PlaylistsApi {
   createPlaylist(
     userId: string,
     playlistName: string,
-    options?: CreatePlaylistOptions,
+    options?: types.CreatePlaylistOptions,
   ) {
-    return this.http.post<Playlist>(`/users/${userId}/playlists`, {
+    return this.http.post<types.Playlist>(`/users/${userId}/playlists`, {
       data: {
         ...options,
         name: playlistName,
@@ -117,8 +97,8 @@ export class PlaylistsApi {
    *
    * @param options Optional request information.
    */
-  getMyPlaylists(options?: GetMyPlaylistsOptions) {
-    return this.http.get<GetMyPlaylistsResponse>(
+  getMyPlaylists(options?: types.GetMyPlaylistsOptions) {
+    return this.http.get<types.GetMyPlaylistsResponse>(
       '/me/playlists',
       options && { params: options },
     );
@@ -132,8 +112,8 @@ export class PlaylistsApi {
    * @param playlistId The Spotify ID for the playlist.
    * @param options Optional request information.
    */
-  getPlaylist(playlistId: string, options?: GetPlaylistOptions) {
-    return this.http.get<Playlist>(
+  getPlaylist(playlistId: string, options?: types.GetPlaylistOptions) {
+    return this.http.get<types.Playlist>(
       `/playlists/${playlistId}`,
       options && { params: options },
     );
@@ -147,7 +127,9 @@ export class PlaylistsApi {
    * @param playlistId The Spotify ID for the playlist.
    */
   getPlaylistCover(playlistId: string) {
-    return this.http.get<SpotifyImage[]>(`/playlists/${playlistId}/images`);
+    return this.http.get<types.SpotifyImage[]>(
+      `/playlists/${playlistId}/images`,
+    );
   }
 
   /**
@@ -159,8 +141,11 @@ export class PlaylistsApi {
    * @param playlistId The Spotify ID for the playlist.
    * @param options Optional request information.
    */
-  getPlaylistItems(playlistId: string, options?: GetPlaylistItemsOptions) {
-    return this.http.get<GetPlaylistItemsResponse>(
+  getPlaylistItems(
+    playlistId: string,
+    options?: types.GetPlaylistItemsOptions,
+  ) {
+    return this.http.get<types.GetPlaylistItemsResponse>(
       `/playlists/${playlistId}/tracks`,
       options && { params: options },
     );
@@ -174,8 +159,8 @@ export class PlaylistsApi {
    * @param userId The user's Spotify user ID.
    * @param options Optional request information.
    */
-  getUserPlaylists(userId: string, options?: GetUserPlaylistsOptions) {
-    return this.http.get<GetUserPlaylistsResponse>(
+  getUserPlaylists(userId: string, options?: types.GetUserPlaylistsOptions) {
+    return this.http.get<types.GetUserPlaylistsResponse>(
       `/users/${userId}/playlists`,
       options && { params: options },
     );
@@ -202,7 +187,7 @@ export class PlaylistsApi {
    * @param uris The Spotify track or episode URIs to remove.
    */
   async removePlaylistItems(playlistId: string, uris: string[]) {
-    const response = await this.http.delete<SnapshotIdResponse>(
+    const response = await this.http.delete<types.SnapshotIdResponse>(
       `/playlists/${playlistId}/tracks`,
       {
         data: {
@@ -227,7 +212,7 @@ export class PlaylistsApi {
     playlistId: string,
     uri: string,
     positions: number[],
-    options?: RemovePlaylistItemsByPositionOptions,
+    options?: types.RemovePlaylistItemsByPositionOptions,
   ) {
     return this.removePlaylistItemsByPosition(
       playlistId,
@@ -248,9 +233,9 @@ export class PlaylistsApi {
   async removePlaylistItemsByPosition(
     playlistId: string,
     items: Array<{ uri: string; positions: number[] }>,
-    options?: RemovePlaylistItemsByPositionOptions,
+    options?: types.RemovePlaylistItemsByPositionOptions,
   ) {
-    const response = await this.http.delete<SnapshotIdResponse>(
+    const response = await this.http.delete<types.SnapshotIdResponse>(
       `/playlists/${playlistId}/tracks`,
       {
         data: {
@@ -276,9 +261,9 @@ export class PlaylistsApi {
     playlistId: string,
     rangeStart: number,
     insertBefore: number,
-    options?: ReorderPlaylistItemsOptions,
+    options?: types.ReorderPlaylistItemsOptions,
   ) {
-    const response = await this.http.put<SnapshotIdResponse>(
+    const response = await this.http.put<types.SnapshotIdResponse>(
       `/playlists/${playlistId}/tracks`,
       {
         data: {

@@ -1,4 +1,4 @@
-import { GetEpisodesResponse } from '../../types/SpotifyResponses';
+import { GetEpisodesResponse } from '../../types';
 
 export const getEpisodesFixture: GetEpisodesResponse = {
   episodes: [

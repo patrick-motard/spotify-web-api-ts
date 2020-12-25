@@ -20,11 +20,7 @@ import {
   GetAuthorizationUrlOptions,
 } from './helpers/getAuthorizationUrl';
 import { Http } from './helpers/Http';
-import {
-  GetRefreshableUserTokensResponse,
-  GetRefreshedAccessTokenResponse,
-  GetTemporaryAppTokensResponse,
-} from './types/SpotifyAuthorization';
+import * as types from './types';
 
 type SpotifyWebApiOptions = {
   accessToken?: string;
@@ -146,7 +142,7 @@ export class SpotifyWebApi {
    *             the authorization endpoint.
    */
   async getRefreshableUserTokens(code: string) {
-    const response = await axios.post<GetRefreshableUserTokensResponse>(
+    const response = await axios.post<types.GetRefreshableUserTokensResponse>(
       TOKEN_URL,
       qs.stringify({
         code,
@@ -173,7 +169,7 @@ export class SpotifyWebApi {
    *                     exchange.
    */
   async getRefreshedAccessToken(refreshToken: string) {
-    const response = await axios.post<GetRefreshedAccessTokenResponse>(
+    const response = await axios.post<types.GetRefreshedAccessTokenResponse>(
       TOKEN_URL,
       qs.stringify({
         grant_type: 'refresh_token',
@@ -204,7 +200,7 @@ export class SpotifyWebApi {
    * access token, is that a higher rate limit is applied.
    */
   async getTemporaryAppTokens() {
-    const response = await axios.post<GetTemporaryAppTokensResponse>(
+    const response = await axios.post<types.GetTemporaryAppTokensResponse>(
       TOKEN_URL,
       qs.stringify({
         grant_type: 'client_credentials',

@@ -1,16 +1,6 @@
 import { Http } from '../helpers/Http';
 import { searchHelper } from '../helpers/searchHelper';
-import { SearchType } from '../types/SpotifyObjects';
-import { SearchOptions } from '../types/SpotifyOptions';
-import {
-  SearchAlbumsResponse,
-  SearchArtistsResponse,
-  SearchEpisodesResponse,
-  SearchPlaylistsResponse,
-  SearchResponse,
-  SearchShowsResponse,
-  SearchTracksResponse,
-} from '../types/SpotifyResponses';
+import * as types from '../types';
 
 export class SearchApi {
   private http: Http;
@@ -29,8 +19,12 @@ export class SearchApi {
    * @param type The item types to search across.
    * @param options Optional request information.
    */
-  search(query: string, type: SearchType[], options?: SearchOptions) {
-    return searchHelper<SearchResponse>(this.http, query, type, options);
+  search(
+    query: string,
+    type: types.SearchType[],
+    options?: types.SearchOptions,
+  ) {
+    return searchHelper<types.SearchResponse>(this.http, query, type, options);
   }
 
   /**
@@ -41,8 +35,8 @@ export class SearchApi {
    * @param query Search query keywords, optional field filters, and operators.
    * @param options Optional request information.
    */
-  async searchAlbums(query: string, options?: SearchOptions) {
-    const response = await searchHelper<SearchAlbumsResponse>(
+  async searchAlbums(query: string, options?: types.SearchOptions) {
+    const response = await searchHelper<types.SearchAlbumsResponse>(
       this.http,
       query,
       ['album'],
@@ -59,8 +53,8 @@ export class SearchApi {
    * @param query Search query keywords, optional field filters, and operators.
    * @param options Optional request information.
    */
-  async searchArtists(query: string, options?: SearchOptions) {
-    const response = await searchHelper<SearchArtistsResponse>(
+  async searchArtists(query: string, options?: types.SearchOptions) {
+    const response = await searchHelper<types.SearchArtistsResponse>(
       this.http,
       query,
       ['artist'],
@@ -77,8 +71,8 @@ export class SearchApi {
    * @param query Search query keywords, optional field filters, and operators.
    * @param options Optional request information.
    */
-  async searchEpisodes(query: string, options?: SearchOptions) {
-    const response = await searchHelper<SearchEpisodesResponse>(
+  async searchEpisodes(query: string, options?: types.SearchOptions) {
+    const response = await searchHelper<types.SearchEpisodesResponse>(
       this.http,
       query,
       ['episode'],
@@ -95,8 +89,8 @@ export class SearchApi {
    * @param query Search query keywords, optional field filters, and operators.
    * @param options Optional request information.
    */
-  async searchPlaylists(query: string, options?: SearchOptions) {
-    const response = await searchHelper<SearchPlaylistsResponse>(
+  async searchPlaylists(query: string, options?: types.SearchOptions) {
+    const response = await searchHelper<types.SearchPlaylistsResponse>(
       this.http,
       query,
       ['playlist'],
@@ -113,8 +107,8 @@ export class SearchApi {
    * @param query Search query keywords, optional field filters, and operators.
    * @param options Optional request information.
    */
-  async searchShows(query: string, options?: SearchOptions) {
-    const response = await searchHelper<SearchShowsResponse>(
+  async searchShows(query: string, options?: types.SearchOptions) {
+    const response = await searchHelper<types.SearchShowsResponse>(
       this.http,
       query,
       ['show'],
@@ -131,8 +125,8 @@ export class SearchApi {
    * @param query Search query keywords, optional field filters, and operators.
    * @param options Optional request information.
    */
-  async searchTracks(query: string, options?: SearchOptions) {
-    const response = await searchHelper<SearchTracksResponse>(
+  async searchTracks(query: string, options?: types.SearchOptions) {
+    const response = await searchHelper<types.SearchTracksResponse>(
       this.http,
       query,
       ['track'],

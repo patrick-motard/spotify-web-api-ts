@@ -1,15 +1,5 @@
 import { Http } from '../helpers/Http';
-import {
-  GetSavedAlbumsOptions,
-  GetSavedShowsOptions,
-  GetSavedTracksOptions,
-  RemoveSavedShowsOptions,
-} from '../types/SpotifyOptions';
-import {
-  GetSavedAlbumsResponse,
-  GetSavedShowsResponse,
-  GetSavedTracksResponse,
-} from '../types/SpotifyResponses';
+import * as types from '../types';
 
 export class LibraryApi {
   private http: Http;
@@ -70,8 +60,8 @@ export class LibraryApi {
    *
    * @param options Optional request information.
    */
-  getSavedAlbums(options?: GetSavedAlbumsOptions) {
-    return this.http.get<GetSavedAlbumsResponse>(
+  getSavedAlbums(options?: types.GetSavedAlbumsOptions) {
+    return this.http.get<types.GetSavedAlbumsResponse>(
       '/me/albums',
       options && { params: options },
     );
@@ -84,8 +74,8 @@ export class LibraryApi {
    *
    * @param options Optional request information.
    */
-  getSavedShows(options?: GetSavedShowsOptions) {
-    return this.http.get<GetSavedShowsResponse>(
+  getSavedShows(options?: types.GetSavedShowsOptions) {
+    return this.http.get<types.GetSavedShowsResponse>(
       '/me/shows',
       options && { params: options },
     );
@@ -98,8 +88,8 @@ export class LibraryApi {
    *
    * @param options Optional request information.
    */
-  getSavedTracks(options?: GetSavedTracksOptions) {
-    return this.http.get<GetSavedTracksResponse>(
+  getSavedTracks(options?: types.GetSavedTracksOptions) {
+    return this.http.get<types.GetSavedTracksResponse>(
       '/me/tracks',
       options && { params: options },
     );
@@ -175,7 +165,7 @@ export class LibraryApi {
    * @param showId The Spotify ID of the show.
    * @param options Optional request information.
    */
-  removeSavedShow(showId: string, options?: RemoveSavedShowsOptions) {
+  removeSavedShow(showId: string, options?: types.RemoveSavedShowsOptions) {
     return this.removeSavedShows([showId], options);
   }
 
@@ -187,7 +177,7 @@ export class LibraryApi {
    * @param showIds The Spotify IDs of the shows.
    * @param options Optional request information.
    */
-  removeSavedShows(showIds: string[], options?: RemoveSavedShowsOptions) {
+  removeSavedShows(showIds: string[], options?: types.RemoveSavedShowsOptions) {
     return this.http.delete<void>('/me/shows', {
       params: {
         ...options,

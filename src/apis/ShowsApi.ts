@@ -1,10 +1,5 @@
 import { Http } from '../helpers/Http';
-import { Show } from '../types/SpotifyObjects';
-import { GetShowEpisodesOptions, MarketOptions } from '../types/SpotifyOptions';
-import {
-  GetShowEpisodesResponse,
-  GetShowsResponse,
-} from '../types/SpotifyResponses';
+import * as types from '../types';
 
 export class ShowsApi {
   private http: Http;
@@ -22,8 +17,8 @@ export class ShowsApi {
    * @param showId The Spotify ID for the show.
    * @param options Optional request information.
    */
-  getShow(showId: string, options?: MarketOptions) {
-    return this.http.get<Show>(
+  getShow(showId: string, options?: types.MarketOptions) {
+    return this.http.get<types.Show>(
       `/shows/${showId}`,
       options && { params: options },
     );
@@ -37,8 +32,8 @@ export class ShowsApi {
    * @param showId The Spotify ID for the show.
    * @param options Optional request information.
    */
-  getShowEpisodes(showId: string, options?: GetShowEpisodesOptions) {
-    return this.http.get<GetShowEpisodesResponse>(
+  getShowEpisodes(showId: string, options?: types.GetShowEpisodesOptions) {
+    return this.http.get<types.GetShowEpisodesResponse>(
       `/shows/${showId}/episodes`,
       options && { params: options },
     );
@@ -53,8 +48,8 @@ export class ShowsApi {
    * @param showIds The Spotify IDs for the shows.
    * @param options Optional request information.
    */
-  async getShows(showIds: string[], options?: MarketOptions) {
-    const response = await this.http.get<GetShowsResponse>('/shows', {
+  async getShows(showIds: string[], options?: types.MarketOptions) {
+    const response = await this.http.get<types.GetShowsResponse>('/shows', {
       params: {
         ...options,
         ids: showIds,

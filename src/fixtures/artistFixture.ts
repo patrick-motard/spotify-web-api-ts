@@ -1,4 +1,4 @@
-import { Artist } from '../types/SpotifyObjects';
+import { Artist } from '../types';
 
 export const artistFixture: Artist = {
   external_urls: {

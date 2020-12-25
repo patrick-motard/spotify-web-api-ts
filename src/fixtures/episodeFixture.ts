@@ -1,4 +1,4 @@
-import { Episode } from '../types/SpotifyObjects';
+import { Episode } from '../types';
 
 export const episodeFixture: Episode = {
   audio_preview_url:

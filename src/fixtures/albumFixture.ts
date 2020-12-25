@@ -1,4 +1,4 @@
-import { Album } from '../types/SpotifyObjects';
+import { Album } from '../types';
 
 export const albumFixture: Album = {
   album_type: 'single',

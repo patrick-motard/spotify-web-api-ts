@@ -1,4 +1,4 @@
-import { GetRecentlyPlayedTracksResponse } from '../../types/SpotifyResponses';
+import { GetRecentlyPlayedTracksResponse } from '../../types';
 
 export const getRecentlyPlayedTracksFixture: GetRecentlyPlayedTracksResponse = {
   items: [

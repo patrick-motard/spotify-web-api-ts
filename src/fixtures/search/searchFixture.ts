@@ -1,4 +1,4 @@
-import { SearchResponse } from '../../types/SpotifyResponses';
+import { SearchResponse } from '../../types';
 
 export const searchFixture: SearchResponse = {
   albums: {

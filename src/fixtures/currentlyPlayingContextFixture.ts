@@ -1,4 +1,4 @@
-import { CurrentlyPlayingContext } from '../types/SpotifyObjects';
+import { CurrentlyPlayingContext } from '../types';
 
 export const currentlyPlayingContextFixture: CurrentlyPlayingContext = {
   device: {

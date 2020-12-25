@@ -1,4 +1,4 @@
-import { PublicUser } from '../types/SpotifyObjects';
+import { PublicUser } from '../types';
 
 export const publicUserFixture: PublicUser = {
   display_name: 'griegs',

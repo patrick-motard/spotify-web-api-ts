@@ -1,4 +1,4 @@
-import { AudioFeatures } from '../types/SpotifyObjects';
+import { AudioFeatures } from '../types';
 
 export const audioFeaturesFixture: AudioFeatures = {
   danceability: 0.787,

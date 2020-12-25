@@ -1,7 +1,5 @@
 import { Http } from '../helpers/Http';
-import { Episode } from '../types/SpotifyObjects';
-import { MarketOptions } from '../types/SpotifyOptions';
-import { GetEpisodesResponse } from '../types/SpotifyResponses';
+import * as types from '../types';
 
 export class EpisodesApi {
   private http: Http;
@@ -28,8 +26,8 @@ export class EpisodesApi {
    *
    * @param options Optional request information.
    */
-  getEpisode(episodeId: string, options?: MarketOptions) {
-    return this.http.get<Episode>(
+  getEpisode(episodeId: string, options?: types.MarketOptions) {
+    return this.http.get<types.Episode>(
       `/episodes/${episodeId}`,
       options && { params: options },
     );
@@ -57,13 +55,16 @@ export class EpisodesApi {
    * @param episodeIds A list of the Spotify IDs for the episodes.
    * @param options Optional request information.
    */
-  async getEpisodes(episodeIds: string[], options?: MarketOptions) {
-    const response = await this.http.get<GetEpisodesResponse>('/episodes', {
-      params: {
-        ...options,
-        ids: episodeIds,
+  async getEpisodes(episodeIds: string[], options?: types.MarketOptions) {
+    const response = await this.http.get<types.GetEpisodesResponse>(
+      '/episodes',
+      {
+        params: {
+          ...options,
+          ids: episodeIds,
+        },
       },
-    });
+    );
     return response.episodes;
   }
 }

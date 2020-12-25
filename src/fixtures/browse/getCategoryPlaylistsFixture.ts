@@ -1,4 +1,4 @@
-import { GetCategoryPlaylistsResponse } from '../../types/SpotifyResponses';
+import { GetCategoryPlaylistsResponse } from '../../types';
 
 export const getCategoryPlaylistsFixture: GetCategoryPlaylistsResponse = {
   playlists: {

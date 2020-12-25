@@ -1,9 +1,5 @@
 import { Http } from '../helpers/Http';
-import {
-  FollowPlaylistOptions,
-  GetFollowedArtistsOptions,
-} from '../types/SpotifyOptions';
-import { GetFollowedArtistsResponse } from '../types/SpotifyResponses';
+import * as types from '../types';
 
 export class FollowApi {
   private http: Http;
@@ -106,7 +102,7 @@ export class FollowApi {
    * @param playlistId The Spotify ID of the playlist.
    * @param options Optional request information.
    */
-  followPlaylist(playlistId: string, options?: FollowPlaylistOptions) {
+  followPlaylist(playlistId: string, options?: types.FollowPlaylistOptions) {
     return this.http.put<void>(
       `/playlists/${playlistId}/followers`,
       options && { data: options },
@@ -172,8 +168,8 @@ export class FollowApi {
    *
    * @param options Optional request information.
    */
-  async getFollowedArtists(options?: GetFollowedArtistsOptions) {
-    const response = await this.http.get<GetFollowedArtistsResponse>(
+  async getFollowedArtists(options?: types.GetFollowedArtistsOptions) {
+    const response = await this.http.get<types.GetFollowedArtistsResponse>(
       '/me/following',
       {
         params: {

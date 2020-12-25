@@ -1,5 +1,5 @@
 import { Http } from '../helpers/Http';
-import { PrivateUser, PublicUser } from '../types/SpotifyObjects';
+import * as types from '../types';
 
 export class UsersApi {
   private http: Http;
@@ -15,7 +15,7 @@ export class UsersApi {
    * current user's username).
    */
   getMe() {
-    return this.http.get<PrivateUser>('/me');
+    return this.http.get<types.PrivateUser>('/me');
   }
 
   /**
@@ -26,6 +26,6 @@ export class UsersApi {
    * @param userId The user's Spotify user ID.
    */
   getUser(userId: string) {
-    return this.http.get<PublicUser>(`/users/${userId}`);
+    return this.http.get<types.PublicUser>(`/users/${userId}`);
   }
 }

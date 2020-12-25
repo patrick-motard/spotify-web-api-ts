@@ -1,4 +1,4 @@
-import { Playlist } from '../types/SpotifyObjects';
+import { Playlist } from '../types';
 
 export const playlistFixture: Playlist = {
   collaborative: false,

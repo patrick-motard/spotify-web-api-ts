@@ -1,4 +1,4 @@
-import { GetFollowedArtistsResponse } from '../../types/SpotifyResponses';
+import { GetFollowedArtistsResponse } from '../../types';
 
 export const getFollowedArtistsFixture: GetFollowedArtistsResponse = {
   artists: {

@@ -1,10 +1,5 @@
 import { Http } from '../helpers/Http';
-import { AudioAnalysis, AudioFeatures, Track } from '../types/SpotifyObjects';
-import { MarketOptions } from '../types/SpotifyOptions';
-import {
-  GetAudioFeaturesForTracksResponse,
-  GetTracksResponse,
-} from '../types/SpotifyResponses';
+import * as types from '../types';
 
 export class TracksApi {
   private http: Http;
@@ -22,7 +17,7 @@ export class TracksApi {
    * @param trackId The Spotify ID for the track.
    */
   getAudioAnalysisForTrack(trackId: string) {
-    return this.http.get<AudioAnalysis>(`/audio-analysis/${trackId}`);
+    return this.http.get<types.AudioAnalysis>(`/audio-analysis/${trackId}`);
   }
 
   /**
@@ -34,7 +29,7 @@ export class TracksApi {
    * @param trackId The Spotify ID for the track.
    */
   getAudioFeaturesForTrack(trackId: string) {
-    return this.http.get<AudioFeatures>(`/audio-features/${trackId}`);
+    return this.http.get<types.AudioFeatures>(`/audio-features/${trackId}`);
   }
 
   /**
@@ -45,14 +40,13 @@ export class TracksApi {
    * @param trackIds The Spotify IDs for the tracks.
    */
   async getAudioFeaturesForTracks(trackIds: string[]) {
-    const response = await this.http.get<GetAudioFeaturesForTracksResponse>(
-      '/audio-features',
-      {
-        params: {
-          ids: trackIds,
-        },
+    const response = await this.http.get<
+      types.GetAudioFeaturesForTracksResponse
+    >('/audio-features', {
+      params: {
+        ids: trackIds,
       },
-    );
+    });
     return response.audio_features;
   }
 
@@ -65,8 +59,8 @@ export class TracksApi {
    * @param trackId The Spotify ID for the track.
    * @param options Optional request information.
    */
-  getTrack(trackId: string, options?: MarketOptions) {
-    return this.http.get<Track>(
+  getTrack(trackId: string, options?: types.MarketOptions) {
+    return this.http.get<types.Track>(
       `/tracks/${trackId}`,
       options && { params: options },
     );
@@ -81,8 +75,8 @@ export class TracksApi {
    * @param trackIds The Spotify IDs for the tracks.
    * @param options Optional request information.
    */
-  async getTracks(trackIds: string[], options?: MarketOptions) {
-    const response = await this.http.get<GetTracksResponse>('/tracks', {
+  async getTracks(trackIds: string[], options?: types.MarketOptions) {
+    const response = await this.http.get<types.GetTracksResponse>('/tracks', {
       params: {
         ...options,
         ids: trackIds,

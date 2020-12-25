@@ -1,4 +1,4 @@
-import { GetPlaylistItemsResponse } from '../../types/SpotifyResponses';
+import { GetPlaylistItemsResponse } from '../../types';
 
 export const getPlaylistItemsFixture: GetPlaylistItemsResponse = {
   href:

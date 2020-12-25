@@ -1,4 +1,4 @@
-import { AudioAnalysis } from '../types/SpotifyObjects';
+import { AudioAnalysis } from '../types';
 
 export const audioAnalysisFixture: AudioAnalysis = {
   bars: [

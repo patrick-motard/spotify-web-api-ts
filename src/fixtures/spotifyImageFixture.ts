@@ -1,4 +1,4 @@
-import { SpotifyImage } from '../types/SpotifyObjects';
+import { SpotifyImage } from '../types';
 
 export const spotifyImageFixture: SpotifyImage = {
   height: 640,
