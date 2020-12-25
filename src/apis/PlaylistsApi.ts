@@ -1,13 +1,7 @@
-import { Http } from '../helpers/Http';
 import * as types from '../types';
+import { BaseApi } from './BaseApi';
 
-export class PlaylistsApi {
-  private http: Http;
-
-  constructor(http: Http) {
-    this.http = http;
-  }
-
+export class PlaylistsApi extends BaseApi {
   /**
    * Add Item to a Playlist
    *

@@ -1,13 +1,7 @@
-import { Http } from '../helpers/Http';
 import * as types from '../types';
+import { BaseApi } from './BaseApi';
 
-export class ArtistsApi {
-  private http: Http;
-
-  constructor(http: Http) {
-    this.http = http;
-  }
-
+export class ArtistsApi extends BaseApi {
   /**
    * ### Get an Artist
    *

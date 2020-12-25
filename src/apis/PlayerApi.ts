@@ -1,13 +1,7 @@
-import { Http } from '../helpers/Http';
 import * as types from '../types';
+import { BaseApi } from './BaseApi';
 
-export class PlayerApi {
-  private http: Http;
-
-  constructor(http: Http) {
-    this.http = http;
-  }
-
+export class PlayerApi extends BaseApi {
   /**
    * Add an Item to the User's Playback Queue
    *

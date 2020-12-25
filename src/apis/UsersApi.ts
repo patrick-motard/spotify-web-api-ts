@@ -1,13 +1,7 @@
-import { Http } from '../helpers/Http';
 import * as types from '../types';
+import { BaseApi } from './BaseApi';
 
-export class UsersApi {
-  private http: Http;
-
-  constructor(http: Http) {
-    this.http = http;
-  }
-
+export class UsersApi extends BaseApi {
   /**
    * Get Current User's Profile
    *

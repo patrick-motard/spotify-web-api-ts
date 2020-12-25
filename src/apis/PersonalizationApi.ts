@@ -1,13 +1,7 @@
-import { Http } from '../helpers/Http';
 import * as types from '../types';
+import { BaseApi } from './BaseApi';
 
-export class PersonalizationApi {
-  private http: Http;
-
-  constructor(http: Http) {
-    this.http = http;
-  }
-
+export class PersonalizationApi extends BaseApi {
   /**
    * Get the Current User's Top Artists
    *

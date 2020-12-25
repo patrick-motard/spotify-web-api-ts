@@ -1,14 +1,8 @@
-import { Http } from '../helpers/Http';
 import { searchHelper } from '../helpers/searchHelper';
 import * as types from '../types';
+import { BaseApi } from './BaseApi';
 
-export class SearchApi {
-  private http: Http;
-
-  constructor(http: Http) {
-    this.http = http;
-  }
-
+export class SearchApi extends BaseApi {
   /**
    * Search for an Item
    *
