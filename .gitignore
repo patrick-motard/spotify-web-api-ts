@@ -64,9 +64,9 @@ typings/
 .vscode
 
 # Build output
-cjs
-esm
-types
+/cjs
+/esm
+/types
 
 # Generated documentation
 docs
