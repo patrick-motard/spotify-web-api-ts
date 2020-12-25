@@ -1,18 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
-import { AlbumsApi } from './apis/AlbumsApi';
-import { ArtistsApi } from './apis/ArtistsApi';
-import { BrowseApi } from './apis/BrowseApi';
-import { EpisodesApi } from './apis/EpisodesApi';
-import { FollowApi } from './apis/FollowApi';
-import { LibraryApi } from './apis/LibraryApi';
-import { PersonalizationApi } from './apis/PersonalizationApi';
-import { PlayerApi } from './apis/PlayerApi';
-import { PlaylistsApi } from './apis/PlaylistsApi';
-import { SearchApi } from './apis/SearchApi';
-import { ShowsApi } from './apis/ShowsApi';
-import { TracksApi } from './apis/TracksApi';
-import { UsersApi } from './apis/UsersApi';
+import * as apis from './apis';
 import { TOKEN_URL } from './constants';
 import { encodeToBase64 } from './helpers/encodeToBase64';
 import {
@@ -36,19 +24,19 @@ export class SpotifyWebApi {
 
   private http: Http;
 
-  public albums: AlbumsApi;
-  public artists: ArtistsApi;
-  public browse: BrowseApi;
-  public episodes: EpisodesApi;
-  public follow: FollowApi;
-  public library: LibraryApi;
-  public personalization: PersonalizationApi;
-  public player: PlayerApi;
-  public playlists: PlaylistsApi;
-  public search: SearchApi;
-  public shows: ShowsApi;
-  public tracks: TracksApi;
-  public users: UsersApi;
+  public albums: apis.AlbumsApi;
+  public artists: apis.ArtistsApi;
+  public browse: apis.BrowseApi;
+  public episodes: apis.EpisodesApi;
+  public follow: apis.FollowApi;
+  public library: apis.LibraryApi;
+  public personalization: apis.PersonalizationApi;
+  public player: apis.PlayerApi;
+  public playlists: apis.PlaylistsApi;
+  public search: apis.SearchApi;
+  public shows: apis.ShowsApi;
+  public tracks: apis.TracksApi;
+  public users: apis.UsersApi;
 
   constructor(options?: SpotifyWebApiOptions) {
     this.clientId = options?.clientId ?? '';
@@ -57,19 +45,19 @@ export class SpotifyWebApi {
 
     this.http = new Http(options?.accessToken ?? '');
 
-    this.albums = new AlbumsApi(this.http);
-    this.artists = new ArtistsApi(this.http);
-    this.browse = new BrowseApi(this.http);
-    this.episodes = new EpisodesApi(this.http);
-    this.follow = new FollowApi(this.http);
-    this.library = new LibraryApi(this.http);
-    this.personalization = new PersonalizationApi(this.http);
-    this.player = new PlayerApi(this.http);
-    this.playlists = new PlaylistsApi(this.http);
-    this.search = new SearchApi(this.http);
-    this.shows = new ShowsApi(this.http);
-    this.tracks = new TracksApi(this.http);
-    this.users = new UsersApi(this.http);
+    this.albums = new apis.AlbumsApi(this.http);
+    this.artists = new apis.ArtistsApi(this.http);
+    this.browse = new apis.BrowseApi(this.http);
+    this.episodes = new apis.EpisodesApi(this.http);
+    this.follow = new apis.FollowApi(this.http);
+    this.library = new apis.LibraryApi(this.http);
+    this.personalization = new apis.PersonalizationApi(this.http);
+    this.player = new apis.PlayerApi(this.http);
+    this.playlists = new apis.PlaylistsApi(this.http);
+    this.search = new apis.SearchApi(this.http);
+    this.shows = new apis.ShowsApi(this.http);
+    this.tracks = new apis.TracksApi(this.http);
+    this.users = new apis.UsersApi(this.http);
   }
 
   getAccessToken() {
