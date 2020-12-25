@@ -105,7 +105,7 @@ export class SpotifyWebApi {
    *
    * @param options Optional URL parameters.
    */
-  getRefreshableAuthorizationUrl(options?: GetAuthorizationUrlOptions): string {
+  getRefreshableAuthorizationUrl(options?: GetAuthorizationUrlOptions) {
     return getAuthorizationUrl(
       this.clientId,
       this.redirectUri,
@@ -120,7 +120,7 @@ export class SpotifyWebApi {
    *
    * @param options Optional URL parameters.
    */
-  getTemporaryAuthorizationUrl(options?: GetAuthorizationUrlOptions): string {
+  getTemporaryAuthorizationUrl(options?: GetAuthorizationUrlOptions) {
     return getAuthorizationUrl(
       this.clientId,
       this.redirectUri,
@@ -145,9 +145,7 @@ export class SpotifyWebApi {
    * @param code The authorization code returned from the initial request to
    *             the authorization endpoint.
    */
-  async getRefreshableUserTokens(
-    code: string,
-  ): Promise<GetRefreshableUserTokensResponse> {
+  async getRefreshableUserTokens(code: string) {
     const response = await axios.post<GetRefreshableUserTokensResponse>(
       TOKEN_URL,
       qs.stringify({
@@ -174,9 +172,7 @@ export class SpotifyWebApi {
    * @param refreshToken The refresh token returned from the authorization code
    *                     exchange.
    */
-  async getRefreshedAccessToken(
-    refreshToken: string,
-  ): Promise<GetRefreshedAccessTokenResponse> {
+  async getRefreshedAccessToken(refreshToken: string) {
     const response = await axios.post<GetRefreshedAccessTokenResponse>(
       TOKEN_URL,
       qs.stringify({
@@ -207,7 +203,7 @@ export class SpotifyWebApi {
    * advantage here in comparison with requests to the Web API made without an
    * access token, is that a higher rate limit is applied.
    */
-  async getTemporaryAppTokens(): Promise<GetTemporaryAppTokensResponse> {
+  async getTemporaryAppTokens() {
     const response = await axios.post<GetTemporaryAppTokensResponse>(
       TOKEN_URL,
       qs.stringify({

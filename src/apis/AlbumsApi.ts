@@ -30,7 +30,7 @@ export class AlbumsApi {
    * @param albumId The Spotify ID for the album.
    * @param options Optional request information.
    */
-  getAlbum(albumId: string, options?: MarketOptions): Promise<Album> {
+  getAlbum(albumId: string, options?: MarketOptions) {
     return this.http.get<Album>(
       `/albums/${albumId}`,
       options && { params: options },
@@ -58,10 +58,7 @@ export class AlbumsApi {
    * @param albumIds The Spotify IDs for the albums.
    * @param options Optional request information.
    */
-  async getAlbums(
-    albumIds: string[],
-    options?: MarketOptions,
-  ): Promise<Array<Album | null>> {
+  async getAlbums(albumIds: string[], options?: MarketOptions) {
     const response = await this.http.get<GetAlbumsResponse>('/albums', {
       params: {
         ...options,
@@ -88,10 +85,7 @@ export class AlbumsApi {
    * @param albumId The Spotify ID for the album.
    * @param options Optional request information.
    */
-  getAlbumTracks(
-    albumId: string,
-    options?: GetAlbumTracksOptions,
-  ): Promise<GetAlbumTracksResponse> {
+  getAlbumTracks(albumId: string, options?: GetAlbumTracksOptions) {
     return this.http.get<GetAlbumTracksResponse>(
       `/albums/${albumId}/tracks`,
       options && { params: options },

@@ -14,7 +14,7 @@ export class UsersApi {
    * Get detailed profile information about the current user (including the
    * current user's username).
    */
-  getMe(): Promise<PrivateUser> {
+  getMe() {
     return this.http.get<PrivateUser>('/me');
   }
 
@@ -25,7 +25,7 @@ export class UsersApi {
    *
    * @param userId The user's Spotify user ID.
    */
-  getUser(userId: string): Promise<PublicUser> {
+  getUser(userId: string) {
     return this.http.get<PublicUser>(`/users/${userId}`);
   }
 }

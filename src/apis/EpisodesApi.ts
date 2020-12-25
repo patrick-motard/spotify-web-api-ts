@@ -28,7 +28,7 @@ export class EpisodesApi {
    *
    * @param options Optional request information.
    */
-  getEpisode(episodeId: string, options?: MarketOptions): Promise<Episode> {
+  getEpisode(episodeId: string, options?: MarketOptions) {
     return this.http.get<Episode>(
       `/episodes/${episodeId}`,
       options && { params: options },
@@ -57,10 +57,7 @@ export class EpisodesApi {
    * @param episodeIds A list of the Spotify IDs for the episodes.
    * @param options Optional request information.
    */
-  async getEpisodes(
-    episodeIds: string[],
-    options?: MarketOptions,
-  ): Promise<Array<Episode | null>> {
+  async getEpisodes(episodeIds: string[], options?: MarketOptions) {
     const response = await this.http.get<GetEpisodesResponse>('/episodes', {
       params: {
         ...options,

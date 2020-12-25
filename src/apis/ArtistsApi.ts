@@ -1,5 +1,5 @@
 import { Http } from '../helpers/Http';
-import { Artist, Track } from '../types/SpotifyObjects';
+import { Artist } from '../types/SpotifyObjects';
 import { GetArtistAlbumsOptions } from '../types/SpotifyOptions';
 import {
   GetArtistAlbumsResponse,
@@ -32,7 +32,7 @@ export class ArtistsApi {
    *
    * @param artistId The Spotify ID for the artist.
    */
-  getArtist(artistId: string): Promise<Artist> {
+  getArtist(artistId: string) {
     return this.http.get<Artist>(`/artists/${artistId}`);
   }
 
@@ -56,10 +56,7 @@ export class ArtistsApi {
    * @param artistId The Spotify ID for the artist.
    * @param options Optional request information.
    */
-  getArtistAlbums(
-    artistId: string,
-    options?: GetArtistAlbumsOptions,
-  ): Promise<GetArtistAlbumsResponse> {
+  getArtistAlbums(artistId: string, options?: GetArtistAlbumsOptions) {
     return this.http.get<GetArtistAlbumsResponse>(
       `/artists/${artistId}/albums`,
       options && { params: options },
@@ -87,7 +84,7 @@ export class ArtistsApi {
    *
    * @param artistIds The Spotify IDs for the artists.
    */
-  async getArtists(artistIds: string[]): Promise<Artist[]> {
+  async getArtists(artistIds: string[]) {
     const response = await this.http.get<GetArtistsResponse>('/artists', {
       params: {
         ids: artistIds,
@@ -116,10 +113,7 @@ export class ArtistsApi {
    * @param artistId The Spotify ID for the artist.
    * @param country An ISO 3166-1 alpha-2 country code or the string `from_token`.
    */
-  async getArtistTopTracks(
-    artistId: string,
-    country: string,
-  ): Promise<Track[]> {
+  async getArtistTopTracks(artistId: string, country: string) {
     const response = await this.http.get<GetArtistTopTracksResponse>(
       `/artists/${artistId}/top-tracks`,
       {
@@ -151,7 +145,7 @@ export class ArtistsApi {
    *
    * @param artistId The Spotify ID for the artist.
    */
-  async getRelatedArtists(artistId: string): Promise<Artist[]> {
+  async getRelatedArtists(artistId: string) {
     const response = await this.http.get<GetRelatedArtistsResponse>(
       `/artists/${artistId}/related-artists`,
     );

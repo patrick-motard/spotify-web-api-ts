@@ -25,7 +25,7 @@ export class LibraryApi {
    *
    * @param albumIds The Spotify IDs of the albums.
    */
-  areAlbumsSaved(albumIds: string[]): Promise<boolean[]> {
+  areAlbumsSaved(albumIds: string[]) {
     return this.http.get<boolean[]>('/me/albums/contains', {
       params: {
         ids: albumIds,
@@ -40,7 +40,7 @@ export class LibraryApi {
    *
    * @param showIds The Spotify IDs of the shows.
    */
-  areShowsSaved(showIds: string[]): Promise<boolean[]> {
+  areShowsSaved(showIds: string[]) {
     return this.http.get<boolean[]>('/me/shows/contains', {
       params: {
         ids: showIds,
@@ -55,7 +55,7 @@ export class LibraryApi {
    *
    * @param trackIds The Spotify IDs of the tracks.
    */
-  areTracksSaved(trackIds: string[]): Promise<boolean[]> {
+  areTracksSaved(trackIds: string[]) {
     return this.http.get<boolean[]>('/me/tracks/contains', {
       params: {
         ids: trackIds,
@@ -70,9 +70,7 @@ export class LibraryApi {
    *
    * @param options Optional request information.
    */
-  getSavedAlbums(
-    options?: GetSavedAlbumsOptions,
-  ): Promise<GetSavedAlbumsResponse> {
+  getSavedAlbums(options?: GetSavedAlbumsOptions) {
     return this.http.get<GetSavedAlbumsResponse>(
       '/me/albums',
       options && { params: options },
@@ -86,9 +84,7 @@ export class LibraryApi {
    *
    * @param options Optional request information.
    */
-  getSavedShows(
-    options?: GetSavedShowsOptions,
-  ): Promise<GetSavedShowsResponse> {
+  getSavedShows(options?: GetSavedShowsOptions) {
     return this.http.get<GetSavedShowsResponse>(
       '/me/shows',
       options && { params: options },
@@ -102,9 +98,7 @@ export class LibraryApi {
    *
    * @param options Optional request information.
    */
-  getSavedTracks(
-    options?: GetSavedTracksOptions,
-  ): Promise<GetSavedTracksResponse> {
+  getSavedTracks(options?: GetSavedTracksOptions) {
     return this.http.get<GetSavedTracksResponse>(
       '/me/tracks',
       options && { params: options },
@@ -118,7 +112,7 @@ export class LibraryApi {
    *
    * @param albumId The Spotify ID of the album.
    */
-  async isAlbumSaved(albumId: string): Promise<boolean> {
+  async isAlbumSaved(albumId: string) {
     const response = await this.areAlbumsSaved([albumId]);
     return response[0];
   }
@@ -130,7 +124,7 @@ export class LibraryApi {
    *
    * @param showId The Spotify ID of the show.
    */
-  async isShowSaved(showId: string): Promise<boolean> {
+  async isShowSaved(showId: string) {
     const response = await this.areShowsSaved([showId]);
     return response[0];
   }
@@ -142,7 +136,7 @@ export class LibraryApi {
    *
    * @param trackId The Spotify ID of the track.
    */
-  async isTrackSaved(trackId: string): Promise<boolean> {
+  async isTrackSaved(trackId: string) {
     const response = await this.areTracksSaved([trackId]);
     return response[0];
   }
@@ -154,7 +148,7 @@ export class LibraryApi {
    *
    * @param albumId The Spotify ID of the album.
    */
-  removeSavedAlbum(albumId: string): Promise<void> {
+  removeSavedAlbum(albumId: string) {
     return this.removeSavedAlbums([albumId]);
   }
 
@@ -165,7 +159,7 @@ export class LibraryApi {
    *
    * @param albumIds The Spotify IDs of the albums.
    */
-  removeSavedAlbums(albumIds: string[]): Promise<void> {
+  removeSavedAlbums(albumIds: string[]) {
     return this.http.delete<void>('/me/albums', {
       data: {
         ids: albumIds,
@@ -181,10 +175,7 @@ export class LibraryApi {
    * @param showId The Spotify ID of the show.
    * @param options Optional request information.
    */
-  removeSavedShow(
-    showId: string,
-    options?: RemoveSavedShowsOptions,
-  ): Promise<void> {
+  removeSavedShow(showId: string, options?: RemoveSavedShowsOptions) {
     return this.removeSavedShows([showId], options);
   }
 
@@ -196,10 +187,7 @@ export class LibraryApi {
    * @param showIds The Spotify IDs of the shows.
    * @param options Optional request information.
    */
-  removeSavedShows(
-    showIds: string[],
-    options?: RemoveSavedShowsOptions,
-  ): Promise<void> {
+  removeSavedShows(showIds: string[], options?: RemoveSavedShowsOptions) {
     return this.http.delete<void>('/me/shows', {
       params: {
         ...options,
@@ -215,7 +203,7 @@ export class LibraryApi {
    *
    * @param trackId The Spotify ID of the track.
    */
-  removeSavedTrack(trackId: string): Promise<void> {
+  removeSavedTrack(trackId: string) {
     return this.removeSavedTracks([trackId]);
   }
 
@@ -226,7 +214,7 @@ export class LibraryApi {
    *
    * @param trackIds The Spotify IDs of the tracks.
    */
-  removeSavedTracks(trackIds: string[]): Promise<void> {
+  removeSavedTracks(trackIds: string[]) {
     return this.http.delete<void>('/me/tracks', {
       data: {
         ids: trackIds,
@@ -241,7 +229,7 @@ export class LibraryApi {
    *
    * @param albumId The Spotify ID of the album.
    */
-  saveAlbum(albumId: string): Promise<void> {
+  saveAlbum(albumId: string) {
     return this.saveAlbums([albumId]);
   }
 
@@ -252,7 +240,7 @@ export class LibraryApi {
    *
    * @param albumIds The Spotify IDs of the albums.
    */
-  saveAlbums(albumIds: string[]): Promise<void> {
+  saveAlbums(albumIds: string[]) {
     return this.http.put<void>('/me/albums', {
       data: {
         ids: albumIds,
@@ -267,7 +255,7 @@ export class LibraryApi {
    *
    * @param showId The Spotify ID of the show.
    */
-  saveShow(showId: string): Promise<void> {
+  saveShow(showId: string) {
     return this.saveShows([showId]);
   }
 
@@ -278,7 +266,7 @@ export class LibraryApi {
    *
    * @param showIds The Spotify IDs of the shows.
    */
-  saveShows(showIds: string[]): Promise<void> {
+  saveShows(showIds: string[]) {
     return this.http.put<void>('/me/shows', {
       params: {
         ids: showIds,
@@ -293,7 +281,7 @@ export class LibraryApi {
    *
    * @param trackId The Spotify ID of the track.
    */
-  saveTrack(trackId: string): Promise<void> {
+  saveTrack(trackId: string) {
     return this.saveTracks([trackId]);
   }
 
@@ -304,7 +292,7 @@ export class LibraryApi {
    *
    * @param trackIds The Spotify IDs of the tracks.
    */
-  saveTracks(trackIds: string[]): Promise<void> {
+  saveTracks(trackIds: string[]) {
     return this.http.put<void>('/me/tracks', {
       data: {
         ids: trackIds,

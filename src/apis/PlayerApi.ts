@@ -30,7 +30,7 @@ export class PlayerApi {
    * @param uri The uri of the track or episode to add to the queue.
    * @param options Optional request information.
    */
-  addToQueue(uri: string, options?: DeviceIdOptions): Promise<void> {
+  addToQueue(uri: string, options?: DeviceIdOptions) {
     return this.http.post<void>('/me/player/queue', {
       params: {
         ...options,
@@ -46,9 +46,7 @@ export class PlayerApi {
    *
    * @param options Optional request information.
    */
-  getCurrentlyPlayingTrack(
-    options?: GetCurrentlyPlayingTrackOptions,
-  ): Promise<CurrentlyPlaying> {
+  getCurrentlyPlayingTrack(options?: GetCurrentlyPlayingTrackOptions) {
     return this.http.get<CurrentlyPlaying>(
       '/me/player/currently-playing',
       options && { params: options },
@@ -60,7 +58,7 @@ export class PlayerApi {
    *
    * Get information about a user's available devices.
    */
-  getMyDevices(): Promise<Device[]> {
+  getMyDevices() {
     return this.http.get<Device[]>('/me/player/devices');
   }
 
@@ -72,9 +70,7 @@ export class PlayerApi {
    *
    * @param options Optional request information.
    */
-  getPlaybackInfo(
-    options?: GetPlaybackInfoOptions,
-  ): Promise<CurrentlyPlayingContext> {
+  getPlaybackInfo(options?: GetPlaybackInfoOptions) {
     return this.http.get<CurrentlyPlayingContext>(
       '/me/player',
       options && { params: options },
@@ -88,9 +84,7 @@ export class PlayerApi {
    *
    * @param options Optional request information.
    */
-  getRecentlyPlayedTracks(
-    options?: GetRecentlyPlayedTracksOptions,
-  ): Promise<GetRecentlyPlayedTracksResponse> {
+  getRecentlyPlayedTracks(options?: GetRecentlyPlayedTracksOptions) {
     return this.http.get<GetRecentlyPlayedTracksResponse>(
       '/me/player/recently-played',
       options && { params: options },
@@ -104,7 +98,7 @@ export class PlayerApi {
    *
    * @param options Optional request information.
    */
-  pause(options?: DeviceIdOptions): Promise<void> {
+  pause(options?: DeviceIdOptions) {
     return this.http.put<void>(
       '/me/player/pause',
       options && { params: options },
@@ -118,7 +112,7 @@ export class PlayerApi {
    *
    * @param options Optional request information.
    */
-  play(options?: PlayOptions): Promise<void> {
+  play(options?: PlayOptions) {
     const { device_id, ...bodyParams } = options ?? {};
 
     return this.http.put<void>(
@@ -138,7 +132,7 @@ export class PlayerApi {
    * @param positionMs The position in milliseconds to seek to.
    * @param options Optional request information.
    */
-  seek(positionMs: number, options?: DeviceIdOptions): Promise<void> {
+  seek(positionMs: number, options?: DeviceIdOptions) {
     return this.http.put<void>('/me/player/seek', {
       params: {
         ...options,
@@ -155,7 +149,7 @@ export class PlayerApi {
    * @param state The desired repeat mode.
    * @param options Optional request information.
    */
-  setRepeat(state: RepeatState, options?: DeviceIdOptions): Promise<void> {
+  setRepeat(state: RepeatState, options?: DeviceIdOptions) {
     return this.http.put<void>('/me/player/repeat', {
       params: {
         ...options,
@@ -172,7 +166,7 @@ export class PlayerApi {
    * @param state The desired shuffle state.
    * @param options Optional request information.
    */
-  setShuffle(state: boolean, options?: DeviceIdOptions): Promise<void> {
+  setShuffle(state: boolean, options?: DeviceIdOptions) {
     return this.http.put<void>('/me/player/shuffle', {
       params: {
         ...options,
@@ -189,7 +183,7 @@ export class PlayerApi {
    * @param volumePercent The volume to set.
    * @param options Optional request information.
    */
-  setVolume(volumePercent: number, options?: DeviceIdOptions): Promise<void> {
+  setVolume(volumePercent: number, options?: DeviceIdOptions) {
     return this.http.put<void>('/me/player/volume', {
       params: {
         ...options,
@@ -205,7 +199,7 @@ export class PlayerApi {
    *
    * @param options Optional request information.
    */
-  skipToNext(options?: DeviceIdOptions): Promise<void> {
+  skipToNext(options?: DeviceIdOptions) {
     return this.http.post<void>(
       '/me/player/next',
       options && { params: options },
@@ -219,7 +213,7 @@ export class PlayerApi {
    *
    * @param options Optional request information.
    */
-  skipToPrevious(options?: DeviceIdOptions): Promise<void> {
+  skipToPrevious(options?: DeviceIdOptions) {
     return this.http.post<void>(
       '/me/player/previous',
       options && { params: options },
@@ -234,10 +228,7 @@ export class PlayerApi {
    * @param deviceId The ID of the device on which playback should be started/transferred.
    * @param options Optional request information.
    */
-  transferPlayback(
-    deviceId: string,
-    options?: TransferPlaybackOptions,
-  ): Promise<void> {
+  transferPlayback(deviceId: string, options?: TransferPlaybackOptions) {
     return this.http.put<void>('/me/player', {
       data: {
         ...options,

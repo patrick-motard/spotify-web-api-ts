@@ -19,9 +19,7 @@ export class PersonalizationApi {
    *
    * @param options Optional request information.
    */
-  getMyTopArtists(
-    options?: PersonalizationOptions,
-  ): Promise<GetMyTopArtistsResponse> {
+  getMyTopArtists(options?: PersonalizationOptions) {
     return this.http.get<GetMyTopArtistsResponse>(
       '/me/top/artists',
       options && { params: options },
@@ -35,9 +33,7 @@ export class PersonalizationApi {
    *
    * @param options Optional request information.
    */
-  getMyTopTracks(
-    options?: PersonalizationOptions,
-  ): Promise<GetMyTopTracksResponse> {
+  getMyTopTracks(options?: PersonalizationOptions) {
     return this.http.get<GetMyTopTracksResponse>(
       '/me/top/tracks',
       options && { params: options },

@@ -1,15 +1,6 @@
 import { Http } from '../helpers/Http';
 import { searchHelper } from '../helpers/searchHelper';
-import {
-  Artist,
-  Paging,
-  SearchType,
-  SimplifiedAlbum,
-  SimplifiedEpisode,
-  SimplifiedPlaylist,
-  SimplifiedShow,
-  Track,
-} from '../types/SpotifyObjects';
+import { SearchType } from '../types/SpotifyObjects';
 import { SearchOptions } from '../types/SpotifyOptions';
 import {
   SearchAlbumsResponse,
@@ -38,11 +29,7 @@ export class SearchApi {
    * @param type The item types to search across.
    * @param options Optional request information.
    */
-  search(
-    query: string,
-    type: SearchType[],
-    options?: SearchOptions,
-  ): Promise<SearchResponse> {
+  search(query: string, type: SearchType[], options?: SearchOptions) {
     return searchHelper<SearchResponse>(this.http, query, type, options);
   }
 
@@ -54,10 +41,7 @@ export class SearchApi {
    * @param query Search query keywords, optional field filters, and operators.
    * @param options Optional request information.
    */
-  async searchAlbums(
-    query: string,
-    options?: SearchOptions,
-  ): Promise<Paging<SimplifiedAlbum>> {
+  async searchAlbums(query: string, options?: SearchOptions) {
     const response = await searchHelper<SearchAlbumsResponse>(
       this.http,
       query,
@@ -75,10 +59,7 @@ export class SearchApi {
    * @param query Search query keywords, optional field filters, and operators.
    * @param options Optional request information.
    */
-  async searchArtists(
-    query: string,
-    options?: SearchOptions,
-  ): Promise<Paging<Artist>> {
+  async searchArtists(query: string, options?: SearchOptions) {
     const response = await searchHelper<SearchArtistsResponse>(
       this.http,
       query,
@@ -96,10 +77,7 @@ export class SearchApi {
    * @param query Search query keywords, optional field filters, and operators.
    * @param options Optional request information.
    */
-  async searchEpisodes(
-    query: string,
-    options?: SearchOptions,
-  ): Promise<Paging<SimplifiedEpisode>> {
+  async searchEpisodes(query: string, options?: SearchOptions) {
     const response = await searchHelper<SearchEpisodesResponse>(
       this.http,
       query,
@@ -117,10 +95,7 @@ export class SearchApi {
    * @param query Search query keywords, optional field filters, and operators.
    * @param options Optional request information.
    */
-  async searchPlaylists(
-    query: string,
-    options?: SearchOptions,
-  ): Promise<Paging<SimplifiedPlaylist>> {
+  async searchPlaylists(query: string, options?: SearchOptions) {
     const response = await searchHelper<SearchPlaylistsResponse>(
       this.http,
       query,
@@ -138,10 +113,7 @@ export class SearchApi {
    * @param query Search query keywords, optional field filters, and operators.
    * @param options Optional request information.
    */
-  async searchShows(
-    query: string,
-    options?: SearchOptions,
-  ): Promise<Paging<SimplifiedShow>> {
+  async searchShows(query: string, options?: SearchOptions) {
     const response = await searchHelper<SearchShowsResponse>(
       this.http,
       query,
@@ -159,10 +131,7 @@ export class SearchApi {
    * @param query Search query keywords, optional field filters, and operators.
    * @param options Optional request information.
    */
-  async searchTracks(
-    query: string,
-    options?: SearchOptions,
-  ): Promise<Paging<Track>> {
+  async searchTracks(query: string, options?: SearchOptions) {
     const response = await searchHelper<SearchTracksResponse>(
       this.http,
       query,
